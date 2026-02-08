@@ -1,0 +1,47 @@
+############################
+# Python
+############################
+__pycache__/
+*.py[cod]
+*$py.class
+
+############################
+# Virtual Environment
+############################
+.venv/
+venv/
+env/
+
+############################
+# Environment variables
+############################
+.env
+.env.*
+!.env.example
+
+############################
+# Django stuff
+############################
+*.log
+media/
+staticfiles/
+
+############################
+# PostgreSQL
+############################
+# (odatda ignore qilinadigan fayl yo‘q,
+# lekin dump bo‘lsa tushmasin)
+*.sql
+*.dump
+
+############################
+# IDE
+############################
+.idea/
+.vscode/
+
+############################
+# OS
+############################
+.DS_Store
+Thumbs.db
