@@ -130,3 +130,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = "users.User"
 
+JWT_SECRET = os.getenv("JWT_SECRET", SECRET_KEY)
+JWT_ACCESS_TTL = int(os.getenv("JWT_ACCESS_TTL", "3600"))
+
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "apps.users.authentication.JWTAuthentication",
+    ],
+}
+
+
+
