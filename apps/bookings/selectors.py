@@ -3,6 +3,7 @@ from django.utils.dateparse import parse_datetime
 
 from common.exceptions import ValidationError
 from .models import Booking, BookingStatus
+from datetime import datetime
 
 
 def _parse_dt(value: str, field_name: str):
@@ -52,3 +53,17 @@ def list_bookings(
         qs = qs.filter(status=status)
 
     return qs.order_by("start_at", "created_at")
+
+
+def has_overlap(*, resource_id: str, start_at: datetime, end_at: datetime) -> bool:
+    """
+    Overlap exists if:
+      new_start < existing_end AND new_end > existing_start
+    Only checks ACTIVE bookings.
+    """
+    return Booking.objects.filter(
+        resource_id=resource_id,
+        status=BookingStatus.ACTIVE,
+        start_at__lt=end_at,
+        end_at__gt=start_at,
+    ).exists()

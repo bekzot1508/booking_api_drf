@@ -17,3 +17,9 @@ class BookingListItemSerializer(serializers.ModelSerializer):
             "status",
             "created_at",
         ]
+
+
+class BookingCreateSerializer(serializers.Serializer):
+    resource_id = serializers.UUIDField()
+    start_at = serializers.DateTimeField()
+    end_at = serializers.DateTimeField()
